@@ -88,8 +88,8 @@ class AirCargoProblem(Problem):
                         effect_add = [expr("At({}, {})".format(cargo, airport))]
                         effect_rem = [expr("In({}, {})".format(cargo, plane))]
                         unload = Action(expr("Unload({}, {}, {})".format(cargo, plane, airport)),
-                                      [precond_pos, precond_neg],
-                                      [effect_add, effect_rem])
+                                        [precond_pos, precond_neg],
+                                        [effect_add, effect_rem])
                         unloads.append(unload)
             # TODO create all Unload ground actions from the domain Unload action
             return unloads
@@ -126,6 +126,11 @@ class AirCargoProblem(Problem):
         """
         # TODO implement
         possible_actions = []
+        kb = PropKB()
+        kb.tell(decode_state(state, self.state_map).pos_sentence())
+        for action in self.actions_list:
+            if action.check_precond(kb, action.args):
+                possible_actions.append(action)
         return possible_actions
 
     def result(self, state: str, action: Action):
