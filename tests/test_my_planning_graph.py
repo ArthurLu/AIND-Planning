@@ -90,12 +90,12 @@ class TestPlanningGraphMutex(unittest.TestCase):
         self.assertTrue(PlanningGraph.competing_needs_mutex(self.pg, self.na1, self.na2),
                         "Opposite preconditions from two action nodes not marked as mutex")
 
-    def test_negation_mutex(self):
+    def test_l(self):
         self.assertTrue(PlanningGraph.negation_mutex(self.pg, self.ns1, self.ns3),
                         "Opposite literal nodes not found to be Negation mutex")
         self.assertFalse(PlanningGraph.negation_mutex(self.pg, self.ns1, self.ns2),
                          "Same literal nodes found to be Negation mutex")
-    @unittest.skipIf(True, "")
+
     def test_inconsistent_support_mutex(self):
         self.assertFalse(PlanningGraph.inconsistent_support_mutex(self.pg, self.ns1, self.ns2),
                          "Independent node paths should NOT be inconsistent-support mutex")
@@ -117,7 +117,7 @@ class TestPlanningGraphMutex(unittest.TestCase):
             self.pg, self.ns1, self.ns2),
             "If one parent action can achieve both states, should NOT be inconsistent-support mutex, even if parent actions are themselves mutex")
 
-@unittest.skip
+
 class TestPlanningGraphHeuristics(unittest.TestCase):
     def setUp(self):
         self.p = have_cake()
