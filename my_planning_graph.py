@@ -312,15 +312,15 @@ class PlanningGraph():
         #   to see if a proposed PgNode_a has prenodes that are a subset of the previous S level.  Once an
         #   action node is added, it MUST be connected to the S node instances in the appropriate s_level set.
         self.a_levels.append(set()) # empty to start
-        fluents = self.s_levels[level]
+        literals = self.s_levels[level]
         for action in self.all_actions:
             node_a = PgNode_a(action)
             precond = node_a.precond_s_nodes()
             # Check if all prerequisite literals for the action hold
-            if precond & fluents == precond:
+            if precond & literals == precond:
                 self.a_levels[level].add(node_a)
                 # Connect action node to state nodes at the level
-                for node_s in fluents:
+                for node_s in literals:
                     if node_s in precond:
                         node_s.children.add(node_a)
                         node_a.parents.add(node_s)
@@ -519,4 +519,10 @@ class PlanningGraph():
         level_sum = 0
         # TODO implement
         # for each goal in the problem, determine the level cost, then add them together
+        for literal in self.problem.goal:
+            node = PgNode_s(literal, True)
+            for level, nodes in enumerate(self.s_levels):
+                if node in nodes:
+                    level_sum += level
+                    break
         return level_sum
