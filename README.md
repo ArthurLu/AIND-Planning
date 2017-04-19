@@ -23,8 +23,7 @@ Instead, you will implement domain-independent heuristics.
 
 ## Environment requirements
 - Python 3.4 or higher
-- Starter code includes a copy of [companion code](https://github.com/aimacode) 
-for the Stuart Russel/Norvig AIMA text.  
+- Starter code includes a copy of [companion code](https://github.com/aimacode) from the Stuart Russel/Norvig AIMA text.  
 
 
 ## Project Details
@@ -91,7 +90,7 @@ Goal(At(C1, JFK) ∧ At(C3, JFK) ∧ At(C2, SFO) ∧ At(C4, SFO))
 #### TODO: Experiment and document metrics for non-heuristic planning solution searches
 * Run uninformed planning searches for `air_cargo_p1`, `air_cargo_p2`, and `air_cargo_p3`; provide metrics on number of node expansions required, number of goal tests, time elapsed, and optimality of solution for each search algorithm. Include the result of at least three of these searches, including breadth-first and depth-first, in your write-up (`breadth_first_search` and `depth_first_graph_search`). 
 * If depth-first takes longer than 10 minutes for Problem 3 on your system, stop the search and provide this information in your report.
-* Use the `run_search` script for your data collection: from the command line type `python run_search -h` to learn more.
+* Use the `run_search` script for your data collection: from the command line type `python run_search.py -h` to learn more.
 
 >#### Why are we setting the problems up this way?  
 >Progression planning problems can be 
@@ -138,7 +137,7 @@ classes, and the search methods in the AIMA library.
 
 #### TODO: Experiment and document: metrics of A* searches with these heuristics
 * Run A* planning searches using the heuristics you have implemented on `air_cargo_p1`, `air_cargo_p2` and `air_cargo_p3`. Provide metrics on number of node expansions required, number of goal tests, time elapsed, and optimality of solution for each search algorithm and include the results in your report. 
-* Use the `run_search` script for this purpose: from the command line type `python run_search -h` to learn more.
+* Use the `run_search` script for this purpose: from the command line type `python run_search.py -h` to learn more.
 
 >#### Why a Planning Graph?
 >The planning graph is somewhat complex, but is useful in planning because it is a polynomial-size approximation of the exponential tree that represents all possible paths. The planning graph can be used to provide automated admissible heuristics for any domain.  It can also be used as the first step in implementing GRAPHPLAN, a direct planning algorithm that you may wish to learn more about on your own (but we will not address it here).
@@ -163,3 +162,6 @@ implemented in the `example_have_cake` module as an example.
 - The `run_search` script is provided for gathering metrics for various search methods on any or all of the problems and should be used for this purpose.
 
 
+## Improving Execution Time
+
+The exercises in this project can take a *long* time to run (from several seconds to a several hours) depending on the heuristics and search algorithms you choose, as well as the efficiency of your own code.  (You may want to stop and profile your code if runtimes stretch past a few minutes.) One option to improve execution time is to try installing and using [pypy3](http://pypy.org/download.html) -- a python JIT, which can accelerate execution time substantially.  Using pypy is *not* required (and thus not officially supported) -- an efficient solution to this project runs in very reasonable time on modest hardware -- but working with pypy may allow students to explore more sophisticated problems than the examples included in the project.
